@@ -7,33 +7,21 @@
 class EmailParser
   
   
-  attr_accessor :emails
-  @@all = []
+  attr_accessor :emails #:csv_emails
+
+  
+  def initialize (emails)
+    @emails = emails 
+  end
   
   def parse
-    split_email = emails.split(/[,\s]+/)
-    
+     emaials.split.collect do |address|
+       address.split(/[,\s]+/)
+      .flatten.uniq 
   end
   
-  def initialize
-    self 
-    @@all << self
-  end 
+   
+emails = "john@doe.com, person@somewhere.org"
+parser = EmailParser.new(emails)
+parser.parse
   
-  
-  
-  def parser
-    parser = EmailParser.new (emails)
-    
-  end
-  
-  
-  
-  # def self.create
-  #   emails = self.new
-  #   emnails.save
-  #   emails
-  # end 
-  
- 
-end 
